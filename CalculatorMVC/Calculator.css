@@ -54,6 +54,7 @@ h1 {
     color: white;
     font-weight: bold;
     width: 25%;
+    transition: all 0.2s;
 }
 .bOperator,
 .special {
@@ -63,5 +64,6 @@ h1 {
 .bOperator:hover,
 .special:hover {
     background-color: orange;
-    text-shadow: 2px 2px darkgrey;
+/*    text-shadow: 2px 2px darkgrey;*/
+    border: 3px solid white;
 }

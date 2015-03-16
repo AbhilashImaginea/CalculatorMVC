@@ -1,5 +1,5 @@
 //Initialization function to fetch the data, initialize models, views and controllers
-$(function() {
+$(document).ready(function() {
     var oButtonData = getButtonData(),
         oDisplayData = getDisplayData(),
         arrButtonContoller = [],

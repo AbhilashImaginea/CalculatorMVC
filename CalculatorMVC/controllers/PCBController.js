@@ -17,6 +17,7 @@ function PCBController(arrButtonContoller, arrDisplayController) {
         sCurrentInput: ''
     });
 
+    //Assign function to click event of the button
     $.each(this.arrButtonCtrl, function(index, value) {
         value.view.buttonClicked = function(model) {
             _this.onButtonClick(model);
@@ -114,21 +115,8 @@ PCBController.prototype.onEqualtoClick = function() {
     }
 }
 
-//Reset the model to default values on click of clear button
-PCBController.prototype.clear = function() {
-    this.model = new PCBModel({
-        iFirstValue: 0,
-        isFirstValueFinal: false,
-        iSecondValue: 0,
-        isPreviousTotal: false,
-        oCurrentOperator: '',
-        isValueCalculated: false,
-        iCurrentNumber: '',
-        sCurrentInput: ''
-    });
-}
 
-//Format the current input values and call he view drawDisplay function
+//Format the current input values and call the drawDisplay function of DisplayViw
 PCBController.prototype.callDisplay = function() {
     var sCurrentInput, oValues;
     if (this.model.iFirstValue !== 0) {
@@ -155,5 +143,19 @@ PCBController.prototype.callDisplay = function() {
     }
     $.each(this.arrDisplayCtrl, function(index, value) {
         value.drawDisplay(oValues);
+    });
+}
+
+//Reset the model to default values on click of clear button
+PCBController.prototype.clear = function() {
+    this.model = new PCBModel({
+        iFirstValue: 0,
+        isFirstValueFinal: false,
+        iSecondValue: 0,
+        isPreviousTotal: false,
+        oCurrentOperator: '',
+        isValueCalculated: false,
+        iCurrentNumber: '',
+        sCurrentInput: ''
     });
 }
