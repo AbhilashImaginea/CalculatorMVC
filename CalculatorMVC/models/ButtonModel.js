@@ -4,6 +4,4 @@
  */
 function ButtonModel(item) {
     this.value = item.value;
-    this.type = item.type;
 }
-

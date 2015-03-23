@@ -2,10 +2,11 @@
  * PCB Controller
  * PCB Controller responds to user actions from button controller and passes changes based on computations to Display controller.
  */
-function PCBController(arrButtonContoller, arrDisplayController) {
+function PCBController(arrNumberBtnContoller, arrOperatorBtnContoller, arrDisplayContoller) {
     var _this = this;
-    this.arrButtonCtrl = arrButtonContoller;
-    this.arrDisplayCtrl = arrDisplayController;
+    this.arrNumberBtnCtrl = arrNumberBtnContoller;
+    this.arrOperatorBtnCtrl = arrOperatorBtnContoller;
+    this.arrDisplayCtrl = arrDisplayContoller;
     this.model = new PCBModel({
         iFirstValue: 0,
         isFirstValueFinal: false,
@@ -18,26 +19,22 @@ function PCBController(arrButtonContoller, arrDisplayController) {
     });
 
     //Assign function to click event of the button
-    $.each(this.arrButtonCtrl, function(index, value) {
-        value.view.buttonClicked = function(model) {
-            _this.onButtonClick(model);
-        }
+    $.each(this.arrNumberBtnCtrl, function(index, value) {
+        value.buttonClickedCtrl.attach(function(model) {
+            _this.onNumberClick(model);
+        });
     });
-}
 
-//Calls the appropriate function based on the input
-PCBController.prototype.onButtonClick = function(model) {
-    if (model.type === "number") {
-        this.onNumberClick(model);
-    } else {
-        this.onOperatorClick(model);
-    }
-    this.callDisplay();
+    $.each(this.arrOperatorBtnCtrl, function(index, value) {
+        value.buttonClickedCtrl.attach(function(model) {
+            _this.onOperatorClick(model);
+        });
+    });
 }
 
 //This function handles the number input
 PCBController.prototype.onNumberClick = function(model) {
-    var oClickedValue = model.value;
+    var oClickedValue = model.model.value;
     if (this.model.isValueCalculated === true) {
         if (this.model.oCurrentOperator !== '') {
             this.model.iFirstValue = this.model.iCurrentNumber;
@@ -61,12 +58,13 @@ PCBController.prototype.onNumberClick = function(model) {
     } else {
         this.model.iCurrentNumber += oClickedValue;
     }
+    this.callDisplay();
 
 }
 
 //This function handles the operator input
 PCBController.prototype.onOperatorClick = function(model) {
-    var oClickedValue = model.value;
+    var oClickedValue = model.model.value;
     switch (oClickedValue) {
         case "/":
         case "+":
@@ -88,6 +86,7 @@ PCBController.prototype.onOperatorClick = function(model) {
             this.clear();
             break;
     }
+    this.callDisplay();
 }
 
 //Calculate the input on click of equal to button

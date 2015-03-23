@@ -1,53 +1,42 @@
 //Buttons data
-function getButtonData() {
+function getNumberBtnData() {
     return [{
-        value: '1',
-        type: 'number'
+        value: '1'
     }, {
-        value: '2',
-        type: 'number'
+        value: '2'
     }, {
-        value: '3',
-        type: 'number'
+        value: '3'
     }, {
-        value: '+',
-        type: 'bOperator'
+        value: '4'
     }, {
-        value: '4',
-        type: 'number'
+        value: '5'
     }, {
-        value: '5',
-        type: 'number'
+        value: '6'
     }, {
-        value: '6',
-        type: 'number'
+        value: '7'
     }, {
-        value: '-',
-        type: 'bOperator'
+        value: '8'
     }, {
-        value: '7',
-        type: 'number'
+        value: '9'
     }, {
-        value: '8',
-        type: 'number'
+        value: '0'
+    }];
+}
+
+//Buttons data
+function getOperatorBtnData() {
+    return [{
+        value: 'C'
     }, {
-        value: '9',
-        type: 'number'
+        value: '='
     }, {
-        value: '*',
-        type: 'bOperator'
+        value: '+'
     }, {
-        value: 'C',
-        type: 'special'
+        value: '-'
     }, {
-        value: '0',
-        type: 'number'
+        value: '*'
     }, {
-        value: '=',
-        type: 'special'
-    }, {
-        value: '/',
-        type: 'bOperator'
+        value: '/'
     }];
 }
 

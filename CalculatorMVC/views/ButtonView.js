@@ -4,8 +4,7 @@
  * Button controller is attached to these events to handle the user interaction
  */
 function ButtonView(model, element) {
-    this.model = model;
-    this.element = element;
+    this.buttonClickedView = new Event(this);
 }
 
 //Create the button element on the DOM
@@ -18,7 +17,7 @@ ButtonView.prototype.drawButton = function() {
     $(oButtonElement).addClass(modelObject.type);
     $(oButtonElement).html(modelObject.value);
     $(oButtonElement).click(function() {
-        _this.buttonClicked(modelObject);
+       _this.buttonClickedView.notify();
     });
     oButton.append(oButtonElement);
 }

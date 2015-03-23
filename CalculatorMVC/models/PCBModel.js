@@ -1,6 +1,6 @@
 /*
  * PCB Model
- * Stores items related to calculator
+ * Stores items related to PCB
  */
 function PCBModel(item) {
     this.iFirstValue = item.iFirstValue;
